@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title> css实现圆周运动 </title>
+    <style type="text/css">
+        @keyframes animX{
+            0% {left: 0px;}
+            100% {left: 360px;}
+        }
+        @keyframes animY{
+            0% {top: 0px;}
+            100% {top: 360px;}
+        }
+
+        #ball {
+            width: 10px;
+            height: 10px;
+            background-color: mediumvioletred;
+            border-radius: 100%;
+            position: absolute;
+            animation:animX 2s ease-in-out -1s infinite alternate, animY 2s ease-in-out infinite alternate;
+        }
+    </style>
+
+    <script src="jQuery-2.1.4.min.js"></script>
+
+</head>
+<body>
+
+<div id="ball"></div>
+
+<svg width="360" height="400" xmlns="http://www.w3.org/2000/svg">
+
+    <g>
+ <!-- 圆周的轨迹 -->
+      <circle cx="180" cy="180" r="180" stroke="black" stroke-width="1" fill="white"></circle>
+
+     <circle cx="180" cy="180" r="1" stroke="black" stroke-width="1" fill="orange"></circle>
+    <line x1="180" y1="180" x2="180" y2="0" style="stroke:rgb(0,255,0);stroke-width:2" >
+
+    </line>
+    </g>
+    <!--
+        <animateMotion path="M0,100 q20,20 300,100" begin="0s" dur="4s" repeatCount="indefinite"/>
+    -->
+</svg>
+
+<script type="text/javascript">
+    window.setInterval(function () {
+
+        $(document).ready(function(){
+
+            //console.log("能执行");
+            var _position = $("#ball").position();
+            //console.log(_position);
+            $("line").attr({x2: _position.left, y2: _position.top});
+
+    });
+
+    },10);
+</script>
+
+</body>
+</html>

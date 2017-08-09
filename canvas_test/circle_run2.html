@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .circle{
+        width:20px;
+        height:20px;
+        background:blue;
+        border-radius:50%;
+        position: absolute;
+    }
+    .rectangle{
+        width:300px;
+        height:300px;
+        border:1px solid red;
+        position: relative;
+    }
+    </style>
+</head>
+<body>
+
+    <div class="rectangle">
+        <div class="circle"></div>
+    </div>
+
+    <script src="../Js/jquery-1.11.3.min.js"></script>
+    <script>
+        (function(){
+            //圆周运动js实现
+            var circle=$('.circle');
+            var rect=$('.rectangle');
+            //获取半径和圆心
+            var centerX=(rect.width()-circle.width())/2;
+            var centerY=(rect.height()-circle.height())/2;
+            var radius=centerX;
+            //时间递进
+            var times=0;
+            //重绘位置
+            function reset(){
+                times+=1;
+                var hudu=(2*Math.PI/360)*times;
+                //console.info(hudu);
+                var x=centerX+Math.sin(hudu)*radius;
+                var y=centerY+Math.cos(hudu)*radius;
+
+                circle.css({
+                    left:x,
+                    top:y
+                });
+                //调用自己
+               requestAnimationFrame(reset);
+            }
+            //启动定时器
+            requestAnimationFrame(reset);
+        })();
+    </script>
+</body>
+</html>

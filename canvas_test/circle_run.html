@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    @keyframes run{
+        from{
+          transform:rotate(0deg);
+        }
+        to{
+           transform:rotate(360deg);
+        }
+    }
+    .circle{
+        width:20px;
+        height:20px;
+        background:blue;
+        border-radius:50%;
+        position: absolute;
+        transform-origin:110px 110px;
+        animation:run 5s linear infinite;
+        left:40px;
+        top:40px;
+    }
+    .rectangle{
+        width:300px;
+        height:300px;
+        border:1px solid red;
+        position: relative;
+    }
+    </style>
+</head>
+<body>
+    <div class="rectangle">
+        <div class="circle"></div>
+    </div>
+</body>
+</html>
